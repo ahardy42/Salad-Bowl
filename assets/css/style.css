@@ -4,3 +4,10 @@ body {
     background-repeat: no-repeat;
 }
 
+.scores {
+    display: none;
+}
+
+.player-card {
+    display: none;
+}

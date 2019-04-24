@@ -36,7 +36,7 @@
                             <label for="numberofwords">Number of Words Per Person</label>
                             <input type="number" class="form-control" id="num-words">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" id="team-number-div">
                             <label for="exampleFormControlSelect1">Number of Teams</label>
                             <select class="form-control mb-3" id="team-number">
                                 <option>2</option>
@@ -82,17 +82,25 @@
             </div>
         </div>
     </div>
-    <!-- card for active player before game start -->
-    <div class="container" style="height: 100%">
+    <!-- score information for teams -->
+    <div class="container scores">
+        <div class="row">
+            <div class="col-3">
+                <h6 id="scores-heading">Scores</h6>
+            </div>
+        </div>
+    </div>
+    <!-- card for active player for the game -->
+    <div class="container player-card" style="height: 100%">
         <div class="row justify-content-center  align-items-end" style="height: 90%">
             <div class="card">
                 <div class="card-body">
-                        <button type="button" class="btn-block btn-danger" id="go!">Skip</button>
-                    <h5 class="card-title text-center mt-3" id="player-name-instructions">Name</h5>
-                    <p class="card-text">Instructions based on the round</p>
-                    <h2 class="text-center mb-3">WORD</h2>
+                    <button type="button" class="btn-block btn-danger" id="skip">Skip</button>
+                    <h5 class="card-title text-center mt-3" id="player-name-instructions"></h5>
+                    <p class="card-text" id="instructions"></p>
+                    <h2 class="text-center mb-3" id="word"></h2>
                     <button type="button" class="btn-block btn-danger" id="go!">Party Time!</button>
-                    <button type="button" class="btn-block btn-success" id="go!">Correct!</button>
+                    <button type="button" class="btn-block btn-success" id="correct">Correct!</button>
                 </div>
             </div>
         </div>

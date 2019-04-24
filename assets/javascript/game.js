@@ -7,6 +7,10 @@ $(document).ready(function () {
     // array of words
     var wordList = [];
     var randomWordList = [];
+    // round of the game
+    var gameRound = 1;
+    // htmlstring for the instructions
+    var instructions = ["You may use as many words as you want, but DON'T SAY <em>the</em> WORD", "You can only act out the word", "you may say <em>ONE</em> word (not <em>the</em> word though)"];
 
     // Initialize Firebase
     var config = {
@@ -50,11 +54,12 @@ $(document).ready(function () {
             this.players = []
         this.score = 0;
         this.wins = 0;
+        this.numPlayers = this.players.length;
     }
 
     // populates any randomArray randomly with the contents of an array
     function randomizer(array, randomArray) {
-        if (array.length) {
+        if (array.length > 0) {
             while (randomArray.length < array.length) {
                 var randomIndex = Math.floor(Math.random() * wordList.length);
                 if (!randomArray.includes(array[randomIndex])) {
@@ -77,6 +82,12 @@ $(document).ready(function () {
         // clear timer 
         clearTimeout(timer);
     }
+
+    // this populates the instruction card with the player name and instructions based on the round
+    function instructionCardFill(player, round) {
+        $("#player-name-instructions").text(player);
+        $("#instructions").html(round);
+    }
     // ================================= even listeners go here =========================================
     // game start button reveals the modal
     $("#game-start").on("click", function () {
@@ -85,7 +96,7 @@ $(document).ready(function () {
         // hide the button
         $(this).css("display", "none");
         // make two inputs in the modal initially
-        makeInput(2, "Team Name", "#team-number");
+        makeInput(2, "Team Name", "#team-number-div");
     });
 
     // drop down team names modal to create input fields
@@ -94,16 +105,17 @@ $(document).ready(function () {
         console.log(numTeams);
         // create new inputs in the modal and give them unique id's
         $(this).siblings().remove();
-        makeInput(numTeams, "Team Name", "#team-number");
-        console.log($("#team-number").siblings().length);
+        makeInput(numTeams, "Team Name", "#team-number-div");
+        console.log($("#team-number-div").siblings().length);
     });
 
     // team name submit button saves team names to the array
     $("#set-teams").on("click", function () {
         // saves the number of words per person!
         var numWords = $("#num-words").val();
+        console.log($("#team-number").parent().siblings());
         // save team names by creating a new Team instance using the constructor function and then add it to the teams array
-        for (i = 1; i < $("#team-number").siblings().length; i++) {
+        for (i = 1; i < $("#team-number").parent().siblings().length; i++) {
             var newTeam = new Team($("#team-name" + i).val());
             teams.push(newTeam);
         }
@@ -158,16 +170,25 @@ $(document).ready(function () {
         console.log(randomWordList);
         // 2. 
         randomizer(teams, teamsRandom);
+        console.log(teams);
         console.log(teamsRandom);
         // 3.
         $("#player-modal").css("display", "none");
         // 4. 
-        teamsRandom.forEach(function (team) {
+        $(".scores").css("display", "block");
+        teamsRandom.forEach(function (team, index) {
             // put the team w/ score at the top of the page
+            var p = $("<p>");
+            p.attr("id", "team-"+index+1+"-score");
+            p.text(team.name + "score is " + team.score);
+            $("#scores-heading").after(p);
         });
         // 5. 
-
-
+        $(".player-card").css("display", "block");
+        $("#skip, #word, #correct").css("display", "none");
+        // now it is team-1 player index 0's turn and it's round 1
+        console.log(teamsRandom[0].players[0], instructions[0]);
+        instructionCardFill(teamsRandom[0].players[0], instructions[0]);
     });
 
 
