@@ -16,7 +16,12 @@
 
 <body>
     <!-- game start button -->
-    <button id="game-start">Start the Game</button>
+    <button class="btn-primary" id="game-start">Start the Game</button>
+
+    <!-- team info for game-play -->
+    <div class="row" id="team-info">
+        <!-- team cards go here -->
+    </div>
 
     <!-- modal to enter team names -->
     <div class="modal" tabindex="-1" role="dialog" id="game-start-modal">
@@ -24,29 +29,26 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Create Teams</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
                 </div>
                 <div class="modal-body">
                     <form>
                         <div class="form-group">
+                            <label for="numberofwords">Number of Words Per Person</label>
+                            <input type="number" class="form-control" id="num-words">
+                        </div>
+                        <div class="form-group">
                             <label for="exampleFormControlSelect1">Number of Teams</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                <option>1</option>
+                            <select class="form-control mb-3" id="team-number">
                                 <option>2</option>
                                 <option>3</option>
                                 <option>4</option>
                                 <option>5</option>
                             </select>
-                            <div class="form-group">
-                            </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-primary" id="set-teams">Submit</button>
                 </div>
             </div>
         </div>
@@ -56,17 +58,41 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <h5 class="modal-title">Add Players</h5>
                 </div>
                 <div class="modal-body">
-                    <p>Modal body text goes here.</p>
+                    <form>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Select Team</label>
+                            <select class="form-control mb-3" id="team-select">
+                                <option id="choose-team">Choose Team</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="player-name-div">
+                            <label for="name">Player Name</label>
+                            <input type="text" class="form-control" id="player-name" placeholder="Player Name">
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
+                    <button type="button" class="btn btn-primary" id="add-player">Add Player</button>
+                    <button type="button" class="btn btn-danger" id="play-game">Start Game</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- card for active player before game start -->
+    <div class="container" style="height: 100%">
+        <div class="row justify-content-center  align-items-end" style="height: 90%">
+            <div class="card">
+                <div class="card-body">
+                        <button type="button" class="btn-block btn-danger" id="go!">Skip</button>
+                    <h5 class="card-title text-center mt-3" id="player-name-instructions">Name</h5>
+                    <p class="card-text">Instructions based on the round</p>
+                    <h2 class="text-center mb-3">WORD</h2>
+                    <button type="button" class="btn-block btn-danger" id="go!">Party Time!</button>
+                    <button type="button" class="btn-block btn-success" id="go!">Correct!</button>
                 </div>
             </div>
         </div>
