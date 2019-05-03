@@ -1,0 +1,73 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Salad Bowl! | Andy Hardy</title>
+    <link rel="stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- first edition will use bootstrap to save time building -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- adding jQuery library reference -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div class="modal" tabindex="-1" role="dialog" id="player-modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Players</h5>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Select Team</label>
+                            <select class="form-control mb-3" id="team-select">
+                                <option id="choose-team">Choose Team</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="player-name-div">
+                            <label for="name">Player Name</label>
+                            <input type="text" class="form-control" id="player-name" placeholder="Player Name">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="back-button">Back</button>
+                    <button type="button" class="btn btn-primary" id="add-player">Add Player</button>
+                    <button type="button" class="btn btn-danger" id="play-game">Start Game</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- score information for teams -->
+    <div class="container scores">
+        <div class="row">
+            <div class="col">
+                <h6 id="scores-heading">Scores</h6>
+            </div>
+        </div>
+    </div>
+    <!-- card for active player for the game -->
+    <div class="container player-card" style="height: 100%">
+        <div class="row justify-content-center  align-items-end" style="height: 90%">
+            <div class="card">
+                <div class="card-body">
+                    <button type="button" class="btn-block btn-danger" id="skip">Skip</button>
+                    <h5 class="card-title text-center mt-3" id="player-name-instructions"></h5>
+                    <p class="card-text" id="instructions"></p>
+                    <h2 class="text-center mb-3" id="word"></h2>
+                    <button type="button" class="btn-block btn-danger" id="go">Party Time!</button>
+                    <button type="button" class="btn-block btn-success" id="correct">Correct!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/javascript/game_test.js"></script>
+</body>
+
+</html>
