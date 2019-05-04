@@ -12,7 +12,7 @@ $(document).ready(function () {
     var wordIndex = 0;
     // round of the game
     var gameRound = 1;
-    var turnTime = 10;
+    var turnTime = 60;
     var count;
     var countDown;
     var timer;
