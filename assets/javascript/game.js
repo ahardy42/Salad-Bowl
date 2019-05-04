@@ -199,7 +199,7 @@ $(document).ready(function () {
         // show the modal
         $("#game-start-modal").css("display", "block");
         // hide the button
-        $(this).css("display", "none");
+        $(".button").css("display", "none");
         // make two inputs in the modal initially
         makeInput(2, "Team Name", "#team-number-div");
     });
