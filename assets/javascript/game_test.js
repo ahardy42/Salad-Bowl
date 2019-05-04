@@ -166,6 +166,29 @@ $(document).ready(function () {
         randomWordList = randomizer(wordList.slice());
     }
 
+    // game over function.  clears the timer and displays the winning team and the score
+    function gameOver() {
+        clearInterval(countDown);
+        clearTimeout(timer);
+        // figure out who won
+        var highScore = 0;
+        var winningTeam;
+        console.log("teams are", teams);
+        teams.forEach(function(team) {
+            if (parseInt(team.score) > highScore) {
+                highScore = parseInt(team.score);
+                winningTeam = team.name;
+                console.log("high score is", highScore);
+                console.log("winning team is", winningTeam);
+            }
+        });
+        // create the win screen
+        $("#winner").text(winningTeam);
+        $("#winning-team-score").text("You crushed it with " + highScore + " points!");
+        // show the screen
+        $(".win-screen").css("display", "block");
+    }
+
     // this populates the instruction card with the player name and instructions based on the round
     function instructionCardFill(player, round) {
         $("#player-name-instructions").text(player);
@@ -327,14 +350,16 @@ $(document).ready(function () {
         turnTimer();
         // display the current word
         $("#word").css("display", "block");
-        $("#word").text(randomWordList[0]);
+        $("#word").text(randomWordList[wordIndex]);
         // display the correct and skip buttons and hide the let's party button
         $("#skip").css("display", "block");
         $("#correct").css("display", "block");
         $("#go").css("display", "none");
     });
 
-    // onclick for clicking the button "correct"
+    // onclick for clicking the button "correct" which incrememnts the score, and the word. 
+    // also checks to see if the round is over afterward, which will trigger the next round
+    // and, checks to see if the game is over, in which case, a score-board is shown.
     $("#correct").on("click", function () {
         $("#word").css("color", "black"); // change color to black if it's not black (might be red)
         // add one point to the current team's points tally and update page
@@ -346,8 +371,11 @@ $(document).ready(function () {
         if (randomWordList.length === 0) {
             gameRound++;
             nextRound();
-            if (gameRound === 3) {
+            if (gameRound > 3) {
+                // hide the player card
+                $(".player-card").css("display", "none");
                 // game over screen
+                gameOver();
             }
         } else if (randomWordList.length === wordIndex) { // start at the skipped words now
             wordIndex = 0;
@@ -355,6 +383,7 @@ $(document).ready(function () {
         } else {
             $("#word").text(randomWordList[wordIndex]); // update the word
         }
+        console.log("word list", randomWordList);
     });
 
     // onclick for skip
@@ -366,6 +395,9 @@ $(document).ready(function () {
         } else {
             $("#word").css("color", "red"); // give an indication this is the last word
         }
+        console.log("word list", randomWordList);
+        console.log("word is", randomWordList[wordIndex]);
+        console.log("word index is", wordIndex);
     });
 
 

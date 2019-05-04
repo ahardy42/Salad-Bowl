@@ -11,3 +11,7 @@ body {
 .player-card {
     display: none;
 }
+
+.win-screen {
+    display: none;
+}
