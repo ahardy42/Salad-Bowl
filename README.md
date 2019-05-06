@@ -14,3 +14,6 @@ After a minute the teams switch and this goes on until all the words are done. t
 The app first randomly selects a starting team.  Then, a starting player on the team. Then, the app shuffles all the words and prompts the first player on the first time to begin.  Once the player hits "begin" the timer starts and a word appears. The player may begin with this word, or skip.  on a skip, the word is added to the end of the array of randomized words. if the player's team guesses correctly, then the player hits the "correct" button.  this removes the word from the array and adds a point to that player's team. After one minute, the second team's first player is prompted that it is their turn. 
 
 After the array has been depleated, the second round begins with the app randomizing the words, and if there is any remaining time, proceeding with the same player for the amount of remaining time. Once all three rounds have come and gone the winning team is announced. 
+
+
+Link to the live site: https://ahardy42.github.io/Salad-Bowl/
